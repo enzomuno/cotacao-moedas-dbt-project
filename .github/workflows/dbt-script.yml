@@ -43,9 +43,7 @@ jobs:
               sslmode: require
         " > ~/.dbt/profiles.yml
 
-    - name: Navigate to DBT Project Directory
-      run: cd dbt_cotacoes_moedas  # Navegar até o diretório do DBT
-
     - name: Run DBT Models
+      working-directory: ./dbt_cotacoes_moedas  # Defina o diretório correto para o dbt_project.yml
       run: |
         dbt run  # Esse comando irá rodar todos os modelos DBT
