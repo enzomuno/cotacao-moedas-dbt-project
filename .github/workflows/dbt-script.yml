@@ -1,0 +1,47 @@
+name: Run DBT Models
+
+on:
+  schedule:
+    # Agendar para rodar todos os dias às 20h
+    - cron: '0 20 * * *'  # Executa todos os dias às 20h
+  workflow_dispatch: # Permite rodar manualmente a partir do GitHub
+
+jobs:
+  run_dbt:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install DBT dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install dbt-postgres
+    - name: Set up DBT profile
+      run: |
+        mkdir -p ~/.dbt
+        echo "
+        dbt_cotacoes_moedas:
+          target: dev
+          outputs:
+            dev:
+              type: postgres
+              host: ${{ secrets.DB_HOST }}
+              user: ${{ secrets.DB_USER }}
+              password: ${{ secrets.DB_PASSWORD }}
+              port: ${{ secrets.DB_PORT }}
+              dbname: ${{ secrets.DB_NAME }}
+              schema: public
+              threads: 1
+              sslmode: require
+        " > ~/.dbt/profiles.yml
+
+    - name: Run DBT Models
+      run: |
+        dbt run  # Esse comando irá rodar todos os modelos DBT
