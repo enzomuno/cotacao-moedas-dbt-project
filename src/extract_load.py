@@ -17,7 +17,7 @@ DB_SSLMODE = os.getenv('DB_SSLMODE')
 DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode={DB_SSLMODE}"
 
 # ===== VARIÁVEIS DE CONEXÃO DA API =====
-API_TOKEN = os.getenv('API_TOKEN')
+API_TOKEN = os.getenv('API_TOKEN').strip()
 url_base = "https://economia.awesomeapi.com.br/json/"
 moedas_consultar_cotacao = 'USD-BRL,EUR-BRL,BTC-BRL'
 
