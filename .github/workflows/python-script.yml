@@ -3,7 +3,7 @@ name: Run Python Script
 on:
   schedule:
     # Agendar para rodar a cada 24 horas (ajuste conforme necessário)
-    - cron: '0 20 * * *'  # Executa diariamente à meia-noite
+    - cron: '0 20 * * *'  # Executa diariamente às 20h UTC
   workflow_dispatch: # Permite rodar manualmente a partir do GitHub
 
 jobs:
@@ -30,7 +30,9 @@ jobs:
         DB_USER: ${{ secrets.DB_USER }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_NAME: ${{ secrets.DB_NAME }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DB_SSLMODE: ${{ secrets.DB_SSLMODE }}
         API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
         cd src
-        python -m extract_load 
+        python -m extract_load
