@@ -1,0 +1,13 @@
+dbt_cotacoes:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: DB_HOST
+      user: DB_USER
+      password: DB_PASSWORD
+      port: DB_PORT
+      dbname: DB_NAME
+      schema: public
+      threads: 1
+      sslmode: require
