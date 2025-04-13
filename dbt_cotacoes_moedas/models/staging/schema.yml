@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_cotacoes
+    description: >
+      Modelo de staging que trata os dados brutos da tabela cotacoes_moedas da AwesomeAPI.
+      Converte os tipos e renomeia colunas para uso padronizado nos modelos de negócio.
+    columns:
+      - name: moeda_origem
+        description: "Código da moeda de origem (ex: USD, EUR, BTC)"
+        tests:
+          - not_null
+
+      - name: moeda_destino
+        description: "Código da moeda de destino (ex: BRL)"
+        tests:
+          - not_null
+
+      - name: par_moeda
+        description: "Nome do par de moedas (ex: Dólar/Real)"
+
+      - name: preco_compra
+        description: "Preço de compra da moeda"
+        tests:
+          - not_null
+
+      - name: preco_venda
+        description: "Preço de venda da moeda"
+        tests:
+          - not_null
+
+      - name: porcent_variacao
+        description: "Variação percentual no dia"
+
+      - name: preco_maximo
+        description: "Maior preço registrado no dia"
+
+      - name: preco_minimo
+        description: "Menor preço registrado no dia"
+
+      - name: data_cotacao
+        description: "Data da cotação"
+        tests:
+          - not_null

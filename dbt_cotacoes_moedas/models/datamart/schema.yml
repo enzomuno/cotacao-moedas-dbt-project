@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: dm_cotacoes_diarias
+    description: "Métrica agregada de cotações por data e par de moedas"
+    columns:
+      - name: data_cotacao
+        description: "Data da cotação"
+        tests:
+          - not_null
+
+      - name: moeda_origem
+        description: "Moeda de origem"
+
+      - name: moeda_destino
+        description: "Moeda de destino"

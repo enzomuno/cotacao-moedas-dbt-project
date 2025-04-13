@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: dw_cotacaomoedas
+    schema: public
+    description: "Banco de dados com as cotações brutas de moedas via AwesomeAPI"
+    tables:
+      - name: cotacoes_moedas
+        description: "Tabela bruta que armazena as cotações obtidas via API"
